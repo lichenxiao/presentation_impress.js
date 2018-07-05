@@ -192,13 +192,16 @@
         
     -->
     <div id='catalogue1' class="step slide" data-x="-3000" data-y="-1500">
-        <q><strong>目录</strong></q>
+        <p><strong>目录</strong></p>
         <br />
         <p>第零部分：<b>编译python</b></p>
+        <br />
         <p>第一部分：<b>python的内建对象</b></p>
         <p> python的对象模型，整数，字符串，list，dict，分析各种对象在C一级是如何构建起来的。</p>
+        <br />
         <p>第二部分：<b>python虚拟机</b></p>
         <p> python虚拟机执行字节码指令的过程，如何通过虚拟机实现各种表达式，控制流，异常机制，函数机制以及类机制。</p>
+        <br />
         <p>第三部分：<b>python的高级话题</b></p>
         <p> python运行环境的初始化，动态加载机制，多线程机制和内存管理机制。</p>
 
@@ -275,7 +278,7 @@
         
     -->
     <div id='part0_5' class="step" data-x="3500" data-y="4500"  data-rotate="60" data-scale="2">
-        <p>0.3 linux下编译软件包</p>
+        <h3>0.3 linux下编译软件包</h3>
         <p>下载tar包</p>
         <p>解压tar包</p>
         <p>./configure -prefix=</p>
@@ -308,88 +311,112 @@
         
     -->
     <div id="part0_6" class="step" data-x="2000" data-y="4500" data-z="0" data-rotate="60" data-scale="3">
-        <p>0.4 修改 <b class="positioning">python</b>, <b class="rotating">源代码</b> </p>
+        <h3>0.4 修改 <b class="positioning">python</b>, <b class="rotating">源代码</b> </h3>
         <p><b class="scaling">修改了PyObject_Print</b></p>
     </div>
 
-    <div id="part0_7" class="step slide" data-x="0" data-y="4500" data-rotate="60" data-scale="3">
-        <p>0.5 注意事项</p>
+    <div id="part0_7" class="step" data-x="0" data-y="4500" data-rotate="60" data-scale="3">
+        <h3>0.5 注意事项</h3>
         <p>Py_ssize_t 看成 int</p>
         <p>内存使用的相关函数: 以New结尾的以C++的new操作符视之，以Malloc结尾的以C的malloc视之。</p>
     </div>
 
-    <div id="part0_8" class="step" data-x="0" data-y="4500" data-rotate="60" data-scale="3">
-        <p>0.6 回顾一下c语言关于内存的相关的函数</p>
+    <div id="part0_8_1" class="step" data-x="-2000" data-y="6000" data-rotate="60" data-scale="3">
+        <h3>0.6.1 回顾一下c语言关于内存的相关的函数</h3>
 
-        <p>void* malloc(unsigned size);
-        malloc()函数有一个参数,即要分配的内存空间的大小.
-
-        void* calloc(size_t nelem, size_t elsize);
-        calloc()函数有两个参数,分别为元素的数目和每个元素的大小,这两个参数的乘积就是要分配的内存空间的大小。
-
-        如果调用成功,函数malloc()和函数calloc()都将返回所分配的内存空间的首地址。
-
-        malloc和calloc都可以分配内存区，但malloc一次只能申请一个内存区，calloc一次可以申请多个内存区．另外calloc会把分配来的内存区初试化为０，malloc不会进行初始化．
-        void* realloc(void* ptr, unsigned newsize);
-        realloc是给一个已经分配了地址的指针重新分配空间,参数ptr为原有的空间地址,newsize是重新申请的地址长度
-        free的调用形式为free(void*ptr)：释放ptr所指向的一块内存空间。</p>
         <p>
-        memmove：
-        原型：void *memmove( void* dest, const void* src, size_t count );
-
-
-        功能：由src所指内存区域复制count个字节到dest所指内存区域。
-        说明：src和dest所指内存区域可以重叠，但复制后dest内容会被更改。函数返回指向dest的指针。
-
-        memcpy:  拷贝内存空间
-        函数原形： void *memcpy(void *dest,void *src,unsigned int count);
-        参数:
-        dest    目标内存区
-        src     原内存区
-        count    要复制的字节数
-        返回值： 指向dest的指针
-        memcpy与memmove的目的都是将N个字节的源内存地址的内容拷贝到目标内存地址中。
-
-        但当源内存和目标内存存在重叠时，memcpy会出现错误，而memmove能正确地实施拷贝，但这也增加了一点点开销。
-
-        memmove的处理措施：
-        （1）当源内存的首地址等于目标内存的首地址时，不进行任何拷贝
-        （2）当源内存的首地址大于目标内存的首地址时，实行正向拷贝
-        （3）当源内存的首地址小于目标内存的首地址时，实行反向拷贝
-        memset 函数 //初始化所指定的内存空间
-        函数原形：void *memset(void *buffer,int c,int count);
-        参数:
-        buffer      分配的内存
-            c     初始化内容
-        count      初始化的字节数
-        返回值： 返回指向buffer的指针
-
-
-        memset把buffer所指内存区域的前count个字节设置成某个字符的ASCLL值．一般用于给数组，字符串等类型赋值．
+            malloc：空间的申请
+                函数原型：void* malloc(unsigned size);
+                malloc()函数有一个参数,即要分配的内存空间的大小.
+            calloc：空间申请
+                函数原型：void* calloc(size_t nelem, size_t elsize);
+                calloc()函数有两个参数,分别为元素的数目和每个元素的大小,这两个参数的乘积就是要分配的内存空间的大小。
 
         </p>
     </div>
+    <div id="part0_8_1_1" class="step" data-x="-4000" data-y="8000" data-rotate="160" data-scale="3">
+        <h3>0.6.1 回顾一下c语言关于内存的相关的函数</h3>
+        <p>
+            如果调用成功,函数malloc()和函数calloc()都将返回所分配的内存空间的首地址。
+            malloc和calloc都可以分配内存区，但malloc一次只能申请一个内存区，calloc一次可以申请多个内存区．另外calloc会把分配来的内存区初试化为０，malloc不会进行初始化．
+        </p>
+    </div>
+    <div id="part0_8_2" class="step" data-x="-6000" data-y="10000" data-rotate="160" data-scale="3">
+        <h3>0.6.2 回顾一下c语言关于内存的相关的函数</h3>
 
-    <div id="part1_1" class="step slide" data-x="5000" data-y="4500" data-rotate="90" data-scale="3">
-        <p>第一章 python对象初探</p>
-        <q>在python的世界里一切都是对象</q>
-        <q>内建类型对象：int, string, list, dict</q>
-        <q>自定义类型对象：class</q>
-        <q>在c层面对象是怎样实现的</q>
-        一块连续或者离散的内存，这块内存能在更高的层次作为一个整体
-        python中，一个对象一旦被创建，它在内存中的大小就是不变了，意味着，要容纳可变长度数据的对象只能在对象内部维护一个指向一块可变大小的内存区域的指针
+        <p>
+            realloc：重新分配空间
+                函数原型：void* realloc(void* ptr, unsigned newsize);
+                realloc是给一个已经分配了地址的指针重新分配空间,参数ptr为原有的空间地址,newsize是重新申请的地址长度
 
+            free：释放ptr所指向的一块内存空间
+                函数原型：free(void*ptr)</p>
+        </p>
+    </div>
+    <div id="part0_8_3" class="step" data-x="-8000" data-y="12000" data-rotate="90" data-scale="3">
+        <h3>0.6.3 回顾一下c语言关于内存的相关的函数</h3>
+        <p>
+        memcpy：拷贝内存空间
+            函数原形： void *memcpy(void *dest,void *src,unsigned int count);
+            参数:
+                dest    目标内存区
+                src     原内存区
+                count    要复制的字节数
+            返回值： 指向dest的指针
+        </p>
     </div>
 
-    <div id="part1_2" class="step slide" data-x="5000" data-y="4500" data-rotate="90" data-scale="3">
-        <p>PyObject</p>
+    <div id="part0_8_4" class="step" data-x="-10000" data-y="10000" data-rotate="160" data-scale="3">
+        <h3>0.6.4 回顾一下c语言关于内存的相关的函数</h3>
+        <p>
+        memcpy升级版：memmove
+            memcpy与memmove的目的都是将N个字节的源内存地址的内容拷贝到目标内存地址中。但当源内存和目标内存存在重叠时，memcpy会出现错误，而memmove能正确地实施拷贝，但这也增加了一点点开销。
+
+            memmove的处理措施：
+            （1）当源内存的首地址等于目标内存的首地址时，不进行任何拷贝
+            （2）当源内存的首地址大于目标内存的首地址时，实行正向拷贝
+            （3）当源内存的首地址小于目标内存的首地址时，实行反向拷贝
+        </p>
+    </div>
+    <div id="part0_8_5" class="step" data-x="-8000" data-y="8000" data-rotate="180" data-scale="3">
+        <h3>0.6.5 回顾一下c语言关于内存的相关的函数</h3>
+        <p>
+        memset：初始化所指定的内存空间
+            函数原形：void *memset(void *buffer,int c,int count);
+            参数:
+                buffer      分配的内存
+                c     初始化内容
+                count      初始化的字节数
+            返回值： 返回指向buffer的指针
+            memset把buffer所指内存区域的前count个字节设置成某个字符的ASCLL值．一般用于给数组，字符串等类型赋值．
+        </p>
+    </div>
+    <div id="part1_1" class="step" data-x="10000" data-y="0" data-rotate="90" data-scale="3">
+        <h3>第一章 python对象初探</h3>
+        <p>在python的世界里一切都是对象</p>
+        <p>内建类型对象：int, string, list, dict</p>
+        <p>自定义类型对象：class</p>
+        <p>在c层面对象是怎样实现的</p>
+        <p>一块连续或者离散的内存，这块内存能在更高的层次作为一个整体</p>
+        <tiny>python中，一个对象一旦被创建，它在内存中的大小就是不变了，意味着，要容纳可变长度数据的对象只能在对象内部维护一个指向一块可变大小的内存区域的指针</tiny>
+    </div>
+
+    <div id="part1_2" class="step" data-x="5000" data-y="4500" data-rotate="90" data-scale="3">
+        <h3>1.1 Python内的对象</h3>
+        PyObject是整个Python对象的核心
+
+
+
+    </div>
+    <div id="part1_3" class="step" data-x="5000" data-y="4500" data-rotate="90" data-scale="3">
+        <h3>1.1.1 PyObject</h3>
         PyObject是整个Python对象的核心
 
 
 
     </div>
 
-    <div id="part1_3" class="step" data-x="6000" data-y="4000" data-scale="3">
+    <div id="part1_4" class="step" data-x="6000" data-y="4000" data-scale="3">
         <p>one more thing...</p>
     </div>
 
@@ -405,7 +432,7 @@
         as `data-rotate` (these two are basically aliases).
         
     -->
-    <div id="part2_1" class="step slide" data-x="6200" data-y="4300" data-z="-100" data-rotate-x="-40" data-rotate-y="10" data-scale="2">
+    <div id="part2_1" class="step" data-x="6200" data-y="4300" data-z="-100" data-rotate-x="-40" data-rotate-y="10" data-scale="2">
         <p>第二章 python中的整数对象</p>
         <p>2.1初识PyIntObject对象</p>
         <p>python对象体系的两种区分方式：</p>

@@ -117,6 +117,7 @@ a {
     -o-transition:      0.5s;
     transition:         0.5s;
 }
+p{font-size:30px}
 
 a:hover,
 a:focus {
