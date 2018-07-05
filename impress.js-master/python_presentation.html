@@ -191,7 +191,7 @@
         Using classic `id`-based links like `#step-2` makes these links usable also in fallback mode.
         
     -->
-    <div class="step slide" data-x="-3000" data-y="-1500">
+    <div id='catalogue1' class="step slide" data-x="-3000" data-y="-1500">
         <q><strong>目录</strong></q>
         <br />
         <p>第零部分：<b>编译python</b></p>
@@ -204,7 +204,7 @@
 
     </div>
 
-    <div class="step slide" data-x="-2000" data-y="-1500">
+    <div id='catalogue2' class="step slide" data-x="-2000" data-y="-1500">
         <br />
         <p>第零部分：<b>编译python</b></p>
         <br />
@@ -215,7 +215,7 @@
         <p>0.5 一些注意事项</p>
     </div>
 
-    <div class="step slide" data-x="-1000" data-y="-1500">
+    <div id='catalogue3' class="step slide" data-x="-1000" data-y="-1500">
         <br />
         <p>第一部分：<b>python的内建对象</b></p>
         <br />
@@ -237,11 +237,11 @@
         down (4 times) to make it back to its correct size.
         
     -->
-    <div class="step" data-x="0" data-y="0" data-rotate="60" data-scale="3">
+    <div id='part0_1' class="step" data-x="0" data-y="0" data-rotate="60" data-scale="3">
         <p> 第零部分：<b>编译python</b></p>
     </div>
 
-    <div class="step" data-x="0" data-y="1500" data-scale="4">
+    <div id='part0_2' class="step" data-x="0" data-y="1500" data-scale="4">
         <h3>0.1 python总体架构</h3>
         <img src="pic/python_struct.png"  alt="python" />
     </div>
@@ -254,13 +254,13 @@
         element should be rotated by 90 degrees clockwise.
         
     -->
-    <div class="step" data-x="3000" data-y="1500" data-rotate="60" data-scale="4">
+    <div id='part0_3' class="step" data-x="3000" data-y="1500" data-rotate="60" data-scale="4">
         <h3>0.2 python源代码的组织</h3>
         <br />
         <img src="pic/python_code_struct.png"  alt="python" />
     </div>
 
-    <div class="step" data-x="2000" data-y="3000" data-rotate="60" data-scale="3">
+    <div id='part0_4' class="step" data-x="2000" data-y="3000" data-rotate="60" data-scale="3">
         <p>0.3</p>
         <p>windows/linux环境 <b>编译</b> <span class="thoughts">python</span></p>
     </div>
@@ -274,7 +274,7 @@
         positioned far away from us (by 3000px).
         
     -->
-    <div class="step" data-x="3500" data-y="4500"  data-rotate="60" data-scale="2">
+    <div id='part0_5' class="step" data-x="3500" data-y="4500"  data-rotate="60" data-scale="2">
         <p>0.3 linux下编译软件包</p>
         <p>下载tar包</p>
         <p>解压tar包</p>
@@ -307,23 +307,89 @@
         See src/plugins/rel/README.md for more information.
         
     -->
-    <div id="ing" class="step" data-x="2000" data-y="4500" data-z="0" data-rotate="60" data-scale="3">
+    <div id="part0_6" class="step" data-x="2000" data-y="4500" data-z="0" data-rotate="60" data-scale="3">
         <p>0.4 修改 <b class="positioning">python</b>, <b class="rotating">源代码</b> </p>
         <p><b class="scaling">修改了PyObject_Print</b></p>
     </div>
 
-    <div id="imagination" class="step" data-x="0" data-y="4500" data-rotate="60" data-scale="3">
+    <div id="part0_7" class="step slide" data-x="0" data-y="4500" data-rotate="60" data-scale="3">
         <p>0.5 注意事项</p>
         <p>Py_ssize_t 看成 int</p>
         <p>内存使用的相关函数: 以New结尾的以C++的new操作符视之，以Malloc结尾的以C的malloc视之。</p>
     </div>
 
-    <div id="source" class="step" data-x="5000" data-y="4500" data-rotate="90" data-scale="3">
-        <p>want to know more?</p>
-        <q><a href="http://github.com/impress/impress.js">use the source</a>, Luke!</q>
+    <div id="part0_8" class="step" data-x="0" data-y="4500" data-rotate="60" data-scale="3">
+        <p>0.6 回顾一下c语言关于内存的相关的函数</p>
+
+        <p>void* malloc(unsigned size);
+        malloc()函数有一个参数,即要分配的内存空间的大小.
+
+        void* calloc(size_t nelem, size_t elsize);
+        calloc()函数有两个参数,分别为元素的数目和每个元素的大小,这两个参数的乘积就是要分配的内存空间的大小。
+
+        如果调用成功,函数malloc()和函数calloc()都将返回所分配的内存空间的首地址。
+
+        malloc和calloc都可以分配内存区，但malloc一次只能申请一个内存区，calloc一次可以申请多个内存区．另外calloc会把分配来的内存区初试化为０，malloc不会进行初始化．
+        void* realloc(void* ptr, unsigned newsize);
+        realloc是给一个已经分配了地址的指针重新分配空间,参数ptr为原有的空间地址,newsize是重新申请的地址长度
+        free的调用形式为free(void*ptr)：释放ptr所指向的一块内存空间。</p>
+        <p>
+        memmove：
+        原型：void *memmove( void* dest, const void* src, size_t count );
+
+
+        功能：由src所指内存区域复制count个字节到dest所指内存区域。
+        说明：src和dest所指内存区域可以重叠，但复制后dest内容会被更改。函数返回指向dest的指针。
+
+        memcpy:  拷贝内存空间
+        函数原形： void *memcpy(void *dest,void *src,unsigned int count);
+        参数:
+        dest    目标内存区
+        src     原内存区
+        count    要复制的字节数
+        返回值： 指向dest的指针
+        memcpy与memmove的目的都是将N个字节的源内存地址的内容拷贝到目标内存地址中。
+
+        但当源内存和目标内存存在重叠时，memcpy会出现错误，而memmove能正确地实施拷贝，但这也增加了一点点开销。
+
+        memmove的处理措施：
+        （1）当源内存的首地址等于目标内存的首地址时，不进行任何拷贝
+        （2）当源内存的首地址大于目标内存的首地址时，实行正向拷贝
+        （3）当源内存的首地址小于目标内存的首地址时，实行反向拷贝
+        memset 函数 //初始化所指定的内存空间
+        函数原形：void *memset(void *buffer,int c,int count);
+        参数:
+        buffer      分配的内存
+            c     初始化内容
+        count      初始化的字节数
+        返回值： 返回指向buffer的指针
+
+
+        memset把buffer所指内存区域的前count个字节设置成某个字符的ASCLL值．一般用于给数组，字符串等类型赋值．
+
+        </p>
     </div>
 
-    <div id="one-more-thing" class="step" data-x="6000" data-y="4000" data-scale="3">
+    <div id="part1_1" class="step slide" data-x="5000" data-y="4500" data-rotate="90" data-scale="3">
+        <p>第一章 python对象初探</p>
+        <q>在python的世界里一切都是对象</q>
+        <q>内建类型对象：int, string, list, dict</q>
+        <q>自定义类型对象：class</q>
+        <q>在c层面对象是怎样实现的</q>
+        一块连续或者离散的内存，这块内存能在更高的层次作为一个整体
+        python中，一个对象一旦被创建，它在内存中的大小就是不变了，意味着，要容纳可变长度数据的对象只能在对象内部维护一个指向一块可变大小的内存区域的指针
+
+    </div>
+
+    <div id="part1_2" class="step slide" data-x="5000" data-y="4500" data-rotate="90" data-scale="3">
+        <p>PyObject</p>
+        PyObject是整个Python对象的核心
+
+
+
+    </div>
+
+    <div id="part1_3" class="step" data-x="6000" data-y="4000" data-scale="3">
         <p>one more thing...</p>
     </div>
 
@@ -339,9 +405,14 @@
         as `data-rotate` (these two are basically aliases).
         
     -->
-    <div id="its-in-3d" class="step" data-x="6200" data-y="4300" data-z="-100" data-rotate-x="-40" data-rotate-y="10" data-scale="2">
-        <p><span class="have">have</span> <span class="you">you</span> <span class="noticed">noticed</span> <span class="its">it’s</span> <span class="in">in</span> <b>3D<sup>*</sup></b>?</p>
-        <span class="footnote">* beat that, prezi ;)</span>
+    <div id="part2_1" class="step slide" data-x="6200" data-y="4300" data-z="-100" data-rotate-x="-40" data-rotate-y="10" data-scale="2">
+        <p>第二章 python中的整数对象</p>
+        <p>2.1初识PyIntObject对象</p>
+        <p>python对象体系的两种区分方式：</p>
+        <p>第一种：定长对象，变长对象</p>
+        <p>第二种：可变对象，不可变对象</p>
+        <p>定长的不可变对象</p>
+        <p></p>
     </div>
 
     <!--
